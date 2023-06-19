@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>게시물 작성폼</title>
+</head>
+
+<style>
+  .layout {
+    width: 500px;
+    margin : 0 auto;
+    margin-top : 40px;
+  }
+
+  .layout input, .layout textarea {
+    width: 100%;
+    box-sizing : border-box;
+    margin-top : 10px;
+  }
+  .layout textarea {
+    height: 300px;
+  }
+</style>
+<body>
+<div class="layout">
+  <form action="/board/writeprocess" method="post">
+    <!--        action은 데이터를 전송할 주소, method는 어떻게 전송할지        -->
+    <input name="title" type="text">
+    <textarea name="content"></textarea>
+    <button type="submit">작성</button>
+    <!--        type을 지정해서 전송을 해준다
+                writeprocess를 처리해주는 메소드에서 넘어오는 name 속성에 따라 처리해준다
+                예) title -> title, content -> content 로 컨트롤러에 넘어간다
+                하지만 이렇게 직접 매칭해주는게 귀찮으므로 entity Board클래스를 컨트롤러에서 바로 넘겨줘도 된다-->
+  </form>
+  <!--        그 다음 접속해 보면 전송버튼을 누르면 form 의 action에 의해 /do 로 데이터가 보내지는게 확인되지만, 처리해주는 로직이 없어서 whitelabel만 나온다-->
+</div>
+</body>
+</html>
+
+<!--BoardController에서 boardwrite로 이동하는 페이지 필요
+따라서 public String boardwriteForm() {} 메소드를 통해 "/" 접속 시 이 정적 페이지를 보이도록 한다-->
