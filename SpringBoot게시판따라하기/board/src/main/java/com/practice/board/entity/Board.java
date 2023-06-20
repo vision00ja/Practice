@@ -15,7 +15,7 @@ import javax.annotation.processing.Generated;
 public class Board {
 
     @Id // ID anno는 Primary Key (PK)를 의미
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Integer id;
     private String title;
     private String content;

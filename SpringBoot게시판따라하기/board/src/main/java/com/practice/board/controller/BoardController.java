@@ -48,8 +48,19 @@ public class BoardController {
         return "redirect:/board/list";
     }
     @GetMapping("/board/modify/{id}")
-    public String boardModify (@PathVariable("id") Integer id) { // pathvariable 은 /modify/{id}로 들어온 부분을 인식해서 id 로 가져온다
+    public String boardModify (@PathVariable("id") Integer id,Model model) { // pathvariable 은 /modify/{id}로 들어온 부분을 인식해서 id 로 가져온다
+
+        model.addAttribute("board", boardService.boardView(id));
         return "boardmodify";
+    }
+    @PostMapping("/board/update/{id}")
+    public String boardUpdate(@PathVariable("id") Integer id, Board board) {
+
+        Board boardTemp = boardService.boardView(id);
+        boardTemp.setTitle(board.getTitle());
+        boardTemp.setContent(board.getContent());
+
+        return "redirect:/board/list";
     }
 }
 //@Controller

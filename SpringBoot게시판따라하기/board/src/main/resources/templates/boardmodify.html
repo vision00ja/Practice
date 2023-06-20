@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
 <head>
   <meta charset="UTF-8">
   <title>게시물 작성폼</title>
@@ -23,11 +23,11 @@
 </style>
 <body>
 <div class="layout">
-  <form action="/board/writeprocess" method="post">
+  <form th:action="@{/board/update/{id}(id = ${board.id})}" method="post">
     <!--        action은 데이터를 전송할 주소, method는 어떻게 전송할지        -->
-    <input name="title" type="text">
-    <textarea name="content"></textarea>
-    <button type="submit">작성</button>
+    <input name="title" type="text" th:value="${board.title}">
+    <textarea name="content" th:text="${board.content}"></textarea>
+    <button type="submit">수정</button>
     <!--        type을 지정해서 전송을 해준다
                 writeprocess를 처리해주는 메소드에서 넘어오는 name 속성에 따라 처리해준다
                 예) title -> title, content -> content 로 컨트롤러에 넘어간다
